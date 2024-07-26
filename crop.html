@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <style>
+        body {
+            background-color: #f0fdf4; /* Light green background */
+        }
+        .navbar {
+            background-color: #34d399; /* Green color for navbar */
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        .crop-container {
+            max-height: 400px; /* Set a max height */
+            overflow-y: scroll; /* Enable vertical scrolling */
+        }
+        .card {
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 0.5rem; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            padding: 1rem; /* Padding inside the card */
+            text-align: center; /* Center text and elements */
+        }
+        .next-button {
+            background-color: #34d399; /* Green color for button */
+            color: white;
+            border-radius: 0.5rem; /* Rounded corners */
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="navbar">
+        Select Your Crops
+    </div>
+    <h2 class="text-lg font-semibold text-gray-700 mt-4">Select crops</h2>
+    <p class="text-gray-500">Select up to 8 crops you are interested in</p>
+    <p class="text-gray-500">0/8</p>
+    <p class="text-gray-500">You can always change it later.</p>
+    <div class="grid grid-cols-2 gap-4 mt-4 crop-container">
+        <!-- Crop items start here -->
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Apple" src="https://openui.fly.dev/openui/100x100.svg?text=🍏" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Apple</span>
+            <input type="checkbox" id="apple" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Banana" src="https://openui.fly.dev/openui/100x100.svg?text=🍌" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Banana</span>
+            <input type="checkbox" id="banana" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Bean" src="https://openui.fly.dev/openui/100x100.svg?text=🌱" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Bean</span>
+            <input type="checkbox" id="bean" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Black & Green Gram" src="https://openui.fly.dev/openui/100x100.svg?text=🌾" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Black & Green Gram</span>
+            <input type="checkbox" id="black-green-gram" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Brinjal" src="https://openui.fly.dev/openui/100x100.svg?text=🍆" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Brinjal</span>
+            <input type="checkbox" id="brinjal" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Cabbage" src="https://openui.fly.dev/openui/100x100.svg?text=🥬" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Cabbage</span>
+            <input type="checkbox" id="cabbage" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Capsicum & Chilli" src="https://openui.fly.dev/openui/100x100.svg?text=🌶️" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Capsicum & Chilli</span>
+            <input type="checkbox" id="capsicum-chilli" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Chickpea & Gram" src="https://openui.fly.dev/openui/100x100.svg?text=🥙" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Chickpea & Gram</span>
+            <input type="checkbox" id="chickpea-gram" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Citrus" src="https://openui.fly.dev/openui/100x100.svg?text=🍋" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Citrus</span>
+            <input type="checkbox" id="citrus" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Cotton" src="https://openui.fly.dev/openui/100x100.svg?text=🌼" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Cotton</span>
+            <input type="checkbox" id="cotton" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Cucumber" src="https://openui.fly.dev/openui/100x100.svg?text=🥒" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Cucumber</span>
+            <input type="checkbox" id="cucumber" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Ginger" src="https://openui.fly.dev/openui/100x100.svg?text=🫚" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Ginger</span>
+            <input type="checkbox" id="ginger" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Grape" src="https://openui.fly.dev/openui/100x100.svg?text=🍇" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Grape</span>
+            <input type="checkbox" id="grape" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Maize" src="https://openui.fly.dev/openui/100x100.svg?text=🌽" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Maize</span>
+            <input type="checkbox" id="maize" class="mt-2">
+        </div>
+        <div class="card flex flex-col items-center">
+            <img aria-hidden="true" alt="Mango" src="https://openui.fly.dev/openui/100x100.svg?text=🥭" class="w-24 h-24 mb-2" />
+            <span class="mt-2 text-gray-700">Mango</span>
+            <input type="checkbox" id="mango" class="mt-2">
+        </div>
+    </div>
+    <button class="mt-6 w-full next-button p-2 rounded-lg">Next</button>
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather & Farming Tools</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #000000, #434343);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #27ae60;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            color: #2ecc71;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .text-muted {
+            color: #718096;
+        }
+
+        .weather-report,
+        .fertilizer-calculator {
+            flex: 1;
+            margin: 10px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .input,
+        .select,
+        .textarea,
+        .button {
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .button {
+            background-color: #2ecc71;
+            color: white;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #27ae60;
+        }
+
+        .border-dashed {
+            border-style: dashed;
+        }
+
+        .border-muted {
+            border-color: #b2b8bf;
+        }
+
+        @media (min-width: 768px) {
+            .flex-row {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .flex-col {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .row-gap {
+                gap: 20px;
+            }
+        }
+
+        #imagePreview {
+            margin-top: 20px;
+            display: none;
+        }
+
+        #imagePreview img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #processingText {
+            display: none;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            /* Black text color */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            /* White background color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Optional: add a shadow for better visibility */
+            z-index: 1000;
+        }
+
+        .details-section {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            z-index: 1000;
+        }
+
+        .details-content {
+            text-align: center;
+        }
+
+        .details-content img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .image-details {
+            text-align: left;
+        }
+
+        .image-details p {
+            margin: 10px 0;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="flex-row">
+            <div class="card weather-report">
+                <h2>Weather Report</h2>
+                <p class="text-muted">Current and forecasted weather conditions for your area.</p>
+                <div class="flex">
+                    <span class="text-4xl" style="color: #2ecc71;">24°C</span>
+                    <span class="text-muted ml-2">Sunny</span>
+                </div>
+                <div class="text-muted">75% Humidity</div>
+                <div class="text-muted">Tomorrow: 26°C / 18°C</div>
+                <div class="flex justify-between mt-4">
+                    <div>
+                        <span class="font-semibold" style="color: #2ecc71;">30%</span>
+                        <span class="text-muted">Chance of Precipitation</span>
+                    </div>
+                    <div>
+                        <span class="font-semibold" style="color: #2ecc71;">10 km/h</span>
+                        <span class="text-muted">Wind Speed</span>
+                    </div>
+                </div>
+                <h3>Next 7 Days</h3>
+                <div class="flex justify-between mt-2 text-muted">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                    <span>Sun</span>
+                </div>
+                <div class="flex justify-between mt-1" style="color: #2ecc71;">
+                    <span>24°C</span>
+                    <span>22°C</span>
+                    <span>25°C</span>
+                    <span>23°C</span>
+                    <span>20°C</span>
+                    <span>22°C</span>
+                    <span>22°C</span>
+                </div>
+            </div>
+
+            <div class="card fertilizer-calculator">
+                <h2>Fertilizer Calculator</h2>
+                <p class="text-muted">Get personalized fertilizer recommendations for your crops.</p>
+                <form class="mt-4">
+                    <div class="grid grid-2">
+                        <select class="select">
+                            <option>Corn</option>
+                            <option>Wheat</option>
+                            <option>Rice</option>
+                        </select>
+                        <select class="select">
+                            <option>Sandy</option>
+                            <option>Clay</option>
+                            <option>Silty</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-2 mt-4">
+                        <input type="text" placeholder="Enter Nitrogen level" class="input" />
+                        <input type="text" placeholder="Enter Phosphorus level" class="input" />
+                    </div>
+                    <div class="grid grid-2 mt-4">
+                        <input type="text" placeholder="Enter Potassium level" class="input" />
+                        <input type="text" placeholder="Enter Organic Matter level" class="input" />
+                    </div>
+                    <button type="submit" class="button mt-4">Calculate Fertilizer</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="flex-row row-gap">
+            <div class="card cultivation-tips">
+                <h2>Cultivation Tips</h2>
+                <p class="text-muted">Expert-curated tips and best practices for your crops.</p>
+                <div class="mt-4">
+                    <label class="block text-sm font-medium">Crop Type</label>
+                    <select class="mt-1 block w-full border border-border rounded-md p-2">
+                        <option>Corn</option>
+                        <option>Wheat</option>
+                        <option>Rice</option>
+                    </select>
+                </div>
+                <div class="mt-4">
+                    <label class="block text-sm font-medium">Location</label>
+                    <input type="text" placeholder="Enter your location"
+                        class="mt-1 block w-full border border-border rounded-md p-2" />
+                </div>
+                <h3 class="mt-6 text-lg font-semibold" style="color: #2ecc71;">Planting and Sowing</h3>
+                <ul class="list-disc list-inside mt-2">
+                    <li><span class="font-medium">Optimal Planting Time:</span> Plant your crops in the spring, after
+                        the last frost has passed.</li>
+                    <li><span class="font-medium">Spacing and Depth:</span> Space plants 12-18 inches apart and plant
+                        them 1-2 inches deep.</li>
+                </ul>
+                <h3 class="mt-6 text-lg font-semibold" style="color: #2ecc71;">Irrigation and Fertilization</h3>
+                <ul class="list-disc list-inside mt-2">
+                    <li><span class="font-medium">Watering Needs:</span> Requires 1-2 inches of water per week, either
+                        from rainfall or irrigation.</li>
+                    <li><span class="font-medium">Fertilizer Application:</span> Apply a balanced NPK fertilizer every
+                        4-6 weeks during the growing season.</li>
+                </ul>
+            </div>
+
+            <div class="card heal-your-crop">
+                <h2>Heal Your Crop</h2>
+                <p class="text-muted">Diagnose and address any issues with your crops.</p>
+                <form form id="upload-form">
+
+                    <div class="mt-4">
+                        <label for="imageUpload" style="display: block;
+                        margin-bottom: 8px;
+                        font-weight: bold;
+                        color: #333;">Upload crop Image:</label>
+                        <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                    </div>
+                    <label for="imageDescription">Description:</label>
+                    <textarea style="width: 90%;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    font-size: 16px;" id="imageDescription" name="imageDescription" rows="4"
+                        placeholder="Enter image description..."></textarea>
+                    <button class="button mt-4" type="submit">Upload Image</button>
+                </form>
+                <div id="imagePreview"></div>
+                <button id="diagnoseBtn" class="button mt-4">Diagnose and Treat</button>
+            </div>
+            <div id="processingText" style="color:black">Processing...</div>
+            <div id="detailsPage" class="details-section">
+                <div class="details-content">
+                    <span id="closePopup" class="close">&times;</span>
+                    <img id="chosenImage" alt="Chosen Image">
+                    <div class="image-details">
+                        <p><strong>Crop Name:</strong> <span id="cropName"></span></p>
+                        <p><strong>Fertility:</strong> <span id="fertility"></span></p>
+                        <p><strong>Pesticides Recommended:</strong> <span id="pesticides"></span></p>
+                        <p><strong>Insecticides Recommended:</strong> <span id="insecticides"></span></p>
+                        <p><strong>Other Crop Related Info:</strong> <span id="otherInfo"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        document.getElementById('upload-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+            const description = document.getElementById('imageDescription').value;
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imagePreview = document.getElementById('imagePreview');
+                    imagePreview.innerHTML = '<img src="' + e.target.result + '" alt="Uploaded Image"><p>' + description + '</p>';
+                    imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select an image file.');
+            }
+        });
+
+        document.getElementById('diagnoseBtn').addEventListener('click', function () {
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please upload an image first.');
+                return;
+            }
+
+            const processingText = document.getElementById('processingText');
+            processingText.style.display = 'block';
+
+            setTimeout(() => {
+                processingText.style.display = 'none';
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const detailsPage = document.getElementById('detailsPage');
+                    detailsPage.style.display = 'block';
+
+                    const chosenImage = document.getElementById('chosenImage');
+                    chosenImage.src = e.target.result;
+
+                    // Sample data - in a real application, this data could come from an API or database
+                    document.getElementById('cropName').innerText = 'Wheat';
+                    document.getElementById('fertility').innerText = 'High fertility soil with adequate nitrogen, phosphorus, and potassium';
+                    document.getElementById('pesticides').innerText = 'Triazoles for fungal diseases, Pyrethroids for insect pests';
+                    document.getElementById('insecticides').innerText = 'Chlorpyrifos for aphids and other sucking pests';
+                    document.getElementById('otherInfo').innerText = 'Requires well-drained soil and moderate water supply, best grown in temperate regions';
+                }
+                reader.readAsDataURL(file);
+            }, 2000);
+        });
+
+        document.getElementById('closePopup').addEventListener('click', function () {
+            const detailsPage = document.getElementById('detailsPage');
+            detailsPage.style.display = 'none';
+        });
+
+    </script>
+</body>
+
+</html>
